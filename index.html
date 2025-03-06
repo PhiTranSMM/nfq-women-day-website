@@ -43,7 +43,99 @@
     application.register("gift-box", GiftBoxController)
   </script>
 
+  <script>
+    // START: falling rose script ****************************************************
+    document.addEventListener("DOMContentLoaded", function () {
+    const roseEmoji = "🌹";
+    const numRoses = 20; // number of elements
+
+    function createRose() {
+        let rose = document.createElement("div");
+        rose.innerHTML = roseEmoji;
+        rose.style.position = "fixed";
+        rose.style.top = "-50px";
+        rose.style.left = Math.random() * window.innerWidth + "px"; // position
+        rose.style.fontSize = Math.random() * 20 + 20 + "px"; // size
+        rose.style.opacity = Math.random() * 0.5 + 0.5; // transparency
+        rose.style.pointerEvents = "none"; // not affect the mouse
+        document.body.appendChild(rose);
+
+        let fallDuration = Math.random() * 5 + 5; // random time (5-10s)
+        let animation = rose.animate(
+            [
+                { transform: `translateY(0px)`, opacity: 1 },
+                { transform: `translateY(${window.innerHeight}px)`, opacity: 0 },
+            ],
+            {
+                duration: fallDuration * 1000,
+                easing: "linear",
+            }
+        );
+
+        animation.onfinish = () => rose.remove(); // remove element after animation
+      }
+
+      setInterval(createRose, 500); // new element after each 500ms
+    });
+    // END: falling rose script ****************************************************
+
+    // START: starts for mouse ****************************************************
+    document.addEventListener("mousemove", function (e) {
+        let star = document.createElement("div");
+        star.classList.add("star");
+        // star.classList.add("heart");
+        document.body.appendChild(star);
+
+        let x = e.clientX;
+        let y = e.clientY;
+        star.style.left = x + "px";
+        star.style.top = y + "px";
+
+        // moving & fading effects
+        let size = Math.random() * 10 + 5;
+        star.style.width = size + "px";
+        star.style.height = size + "px";
+
+        let animationTime = Math.random() * 0.5 + 0.1; // existing time (0.5-1s)
+
+        setTimeout(() => {
+            star.style.opacity = "0";
+            star.style.transform = `translate(${Math.random() * 20 - 10}px, ${Math.random() * 20 - 10}px)`;
+            setTimeout(() => {
+                star.remove();
+            }, animationTime * 1000);
+        }, 100);
+    });
+    // END: starts for mouse ****************************************************
+  </script>
+
   <style>
+    body {
+      overflow-x: hidden;
+      cursor: url('https://cdn-icons-png.flaticon.com/32/833/833472.png'), auto;
+    }
+
+    /* START: starts for mouse **************************************************** */
+    .star {
+        position: absolute;
+        background-color: hotpink;
+        border-radius: 50%;
+        box-shadow: 0 0 5px white, 0 0 10px white;
+        pointer-events: none;
+        transition: opacity 0.5s, transform 0.5s;
+    }
+
+    .heart {
+        position: absolute;
+        background-image: url('https://cdn-icons-png.flaticon.com/32/833/833472.png');
+        background-size: cover;
+        width: 20px;
+        height: 20px;
+        pointer-events: none;
+        transition: opacity 0.5s, transform 0.5s;
+    }
+    /* END: starts for mouse **************************************************** */
+
     .text-center { text-align: center; }
     .joggle { animation: joggle 4.5s ease-in-out infinite; }
 

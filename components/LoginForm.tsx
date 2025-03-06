@@ -65,7 +65,7 @@ const LoginForm = () => {
   }
 
   return (
-    <div className="w-[500px] flex flex-col space-y-4 justify-center items-center">
+    <div className="w-[500px] max-w-full flex flex-col space-y-4 justify-center items-center">
       <p className="text-2xl">Enter your NFQ email: </p>
       <div className="w-full mx-auto bg-white rounded-full">
         <Input

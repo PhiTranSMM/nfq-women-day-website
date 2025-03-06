@@ -13,7 +13,7 @@ const OverlappingImages: React.FC = () => {
   const [activeImage, setActiveImage] = useState<1 | 2>(1);
 
   return (
-    <div className="bg-white rounded-xl shadow-lg p-6 w-full">
+    <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-full">
       <div className="flex flex-col md:flex-row items-center gap-8 p-4 max-w-5xl mx-auto">
         <div className="relative w-full md:w-1/2 h-96 md:h-[450px]">
           {/* Container with perspective for 3D effect */}
